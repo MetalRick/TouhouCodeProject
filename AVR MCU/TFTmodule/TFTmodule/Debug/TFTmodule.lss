@@ -1,0 +1,200 @@
+
+TFTmodule.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000fc  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000150  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000150  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000180  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000060  00000000  00000000  000001bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000077f  00000000  00000000  0000021c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000635  00000000  00000000  0000099b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000032f  00000000  00000000  00000fd0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000a4  00000000  00000000  00001300  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000341  00000000  00000000  000013a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000075  00000000  00000000  000016e5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  0000175a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 6f 00 	call	0xde	; 0xde <main>
+  64:	0c 94 7c 00 	jmp	0xf8	; 0xf8 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <delayT1>:
+}
+
+void writeData (uint8_t b)
+{
+	
+	xfer(b);
+  6c:	80 e8       	ldi	r24, 0x80	; 128
+  6e:	91 ec       	ldi	r25, 0xC1	; 193
+  70:	9d bd       	out	0x2d, r25	; 45
+  72:	8c bd       	out	0x2c, r24	; 44
+  74:	1f bc       	out	0x2f, r1	; 47
+  76:	81 e0       	ldi	r24, 0x01	; 1
+  78:	8e bd       	out	0x2e, r24	; 46
+  7a:	08 b6       	in	r0, 0x38	; 56
+  7c:	02 fe       	sbrs	r0, 2
+  7e:	fd cf       	rjmp	.-6      	; 0x7a <delayT1+0xe>
+  80:	1e bc       	out	0x2e, r1	; 46
+  82:	84 e0       	ldi	r24, 0x04	; 4
+  84:	88 bf       	out	0x38, r24	; 56
+  86:	08 95       	ret
+
+00000088 <xfer>:
+  88:	8f b9       	out	0x0f, r24	; 15
+  8a:	77 9b       	sbis	0x0e, 7	; 14
+  8c:	fe cf       	rjmp	.-4      	; 0x8a <xfer+0x2>
+  8e:	8f b1       	in	r24, 0x0f	; 15
+  90:	08 95       	ret
+
+00000092 <TFTSPI>:
+  92:	b8 9a       	sbi	0x17, 0	; 23
+  94:	c0 98       	cbi	0x18, 0	; 24
+  96:	87 b3       	in	r24, 0x17	; 23
+  98:	80 6a       	ori	r24, 0xA0	; 160
+  9a:	87 bb       	out	0x17, r24	; 23
+  9c:	8d b1       	in	r24, 0x0d	; 13
+  9e:	80 65       	ori	r24, 0x50	; 80
+  a0:	8d b9       	out	0x0d, r24	; 13
+  a2:	08 95       	ret
+
+000000a4 <writeCMD>:
+  a4:	91 98       	cbi	0x12, 1	; 18
+  a6:	0e 94 44 00 	call	0x88	; 0x88 <xfer>
+  aa:	91 9a       	sbi	0x12, 1	; 18
+  ac:	08 95       	ret
+
+000000ae <HardwareReset>:
+
+void HardwareReset()
+{
+	
+	
+	PORTD &=~(1<<7);
+  ae:	97 98       	cbi	0x12, 7	; 18
+	delayT1();
+  b0:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
+	PORTD |=(1<<7);
+  b4:	97 9a       	sbi	0x12, 7	; 18
+	delayT1();
+  b6:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
+  ba:	08 95       	ret
+
+000000bc <InitDisplay>:
+}
+
+void InitDisplay()
+{
+	
+	HardwareReset();
+  bc:	0e 94 57 00 	call	0xae	; 0xae <HardwareReset>
+	writeCMD(SLPOUT);
+  c0:	81 e1       	ldi	r24, 0x11	; 17
+  c2:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
+	delayT1();
+  c6:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
+	
+	writeCMD(COLMOD);
+  ca:	8a e3       	ldi	r24, 0x3A	; 58
+  cc:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
+}
+
+void writeData (uint8_t b)
+{
+	
+	xfer(b);
+  d0:	85 e0       	ldi	r24, 0x05	; 5
+  d2:	0e 94 44 00 	call	0x88	; 0x88 <xfer>
+	writeCMD(SLPOUT);
+	delayT1();
+	
+	writeCMD(COLMOD);
+	writeData(0x05);
+	writeCMD(DISPON);
+  d6:	89 e2       	ldi	r24, 0x29	; 41
+  d8:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
+  dc:	08 95       	ret
+
+000000de <main>:
+}
+
+int main ()
+{
+	
+	DDRD |=(1<<LED)|(1<<DC); 
+  de:	81 b3       	in	r24, 0x11	; 17
+  e0:	83 60       	ori	r24, 0x03	; 3
+  e2:	81 bb       	out	0x11, r24	; 17
+	DDRD|= (1<<RESET);
+  e4:	8f 9a       	sbi	0x11, 7	; 17
+	PORTD |=(1<<RESET);
+  e6:	97 9a       	sbi	0x12, 7	; 18
+	
+	TFTSPI();
+  e8:	0e 94 49 00 	call	0x92	; 0x92 <TFTSPI>
+	InitDisplay();
+  ec:	0e 94 5e 00 	call	0xbc	; 0xbc <InitDisplay>
+	PORTD |= (1<<LED);
+  f0:	90 9a       	sbi	0x12, 0	; 18
+	
+	
+	
+	
+}
+  f2:	80 e0       	ldi	r24, 0x00	; 0
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+  f6:	08 95       	ret
+
+000000f8 <_exit>:
+  f8:	f8 94       	cli
+
+000000fa <__stop_program>:
+  fa:	ff cf       	rjmp	.-2      	; 0xfa <__stop_program>
