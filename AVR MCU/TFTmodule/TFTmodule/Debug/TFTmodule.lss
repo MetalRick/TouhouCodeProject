@@ -3,198 +3,615 @@ TFTmodule.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000fc  00000000  00000000  00000054  2**1
+  0 .text         00000584  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  00000150  2**0
+  1 .data         0000000e  00800060  00000584  00000618  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  00000150  2**0
+  2 .bss          00000002  0080006e  0080006e  00000626  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000626  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000180  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000658  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000060  00000000  00000000  000001bc  2**0
+  5 .debug_aranges 000000b8  00000000  00000000  00000694  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000077f  00000000  00000000  0000021c  2**0
+  6 .debug_info   00000e09  00000000  00000000  0000074c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000635  00000000  00000000  0000099b  2**0
+  7 .debug_abbrev 000007bb  00000000  00000000  00001555  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000032f  00000000  00000000  00000fd0  2**0
+  8 .debug_line   000005a1  00000000  00000000  00001d10  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000a4  00000000  00000000  00001300  2**2
+  9 .debug_frame  000001d4  00000000  00000000  000022b4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000341  00000000  00000000  000013a4  2**0
+ 10 .debug_str    0000041a  00000000  00000000  00002488  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000075  00000000  00000000  000016e5  2**0
+ 11 .debug_loc    00000793  00000000  00000000  000028a2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  0000175a  2**0
+ 12 .debug_ranges 000000a8  00000000  00000000  00003035  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   0:	0c 94 1a 01 	jmp	0x234	; 0x234 <__ctors_end>
+   4:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+   8:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+   c:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  10:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  14:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  18:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  1c:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  20:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  24:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  28:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  2c:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  30:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  34:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  38:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  3c:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  40:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  44:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  48:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  4c:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
+  50:	0c 94 37 01 	jmp	0x26e	; 0x26e <__bad_interrupt>
 
-00000054 <__ctors_end>:
-  54:	11 24       	eor	r1, r1
-  56:	1f be       	out	0x3f, r1	; 63
-  58:	cf e5       	ldi	r28, 0x5F	; 95
-  5a:	d4 e0       	ldi	r29, 0x04	; 4
-  5c:	de bf       	out	0x3e, r29	; 62
-  5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 6f 00 	call	0xde	; 0xde <main>
-  64:	0c 94 7c 00 	jmp	0xf8	; 0xf8 <_exit>
+00000054 <FONT_CHARS>:
+  54:	00 00 00 00 00 00 00 5f 00 00 00 07 00 07 00 14     ......._........
+  64:	7f 14 7f 14 24 2a 7f 2a 12 23 13 08 64 62 36 49     ....$*.*.#..db6I
+  74:	55 22 50 00 05 03 00 00 00 1c 22 41 00 00 41 22     U"P......."A..A"
+  84:	1c 00 08 2a 1c 2a 08 08 08 3e 08 08 00 50 30 00     ...*.*...>...P0.
+  94:	00 08 08 08 08 08 00 60 60 00 00 20 10 08 04 02     .......``.. ....
+  a4:	3e 51 49 45 3e 00 42 7f 40 00 42 61 51 49 46 21     >QIE>.B.@.BaQIF!
+  b4:	41 45 4b 31 18 14 12 7f 10 27 45 45 45 39 3c 4a     AEK1.....'EEE9<J
+  c4:	49 49 30 01 71 09 05 03 36 49 49 49 36 06 49 49     II0.q...6III6.II
+  d4:	29 1e 00 36 36 00 00 00 56 36 00 00 00 08 14 22     )..66...V6....."
+  e4:	41 14 14 14 14 14 41 22 14 08 00 02 01 51 09 06     A.....A".....Q..
+  f4:	32 49 79 41 3e 7e 11 11 11 7e 7f 49 49 49 36 3e     2IyA>~...~.III6>
+ 104:	41 41 41 22 7f 41 41 22 1c 7f 49 49 49 41 7f 09     AAA".AA"..IIIA..
+ 114:	09 01 01 3e 41 41 51 32 7f 08 08 08 7f 00 41 7f     ...>AAQ2......A.
+ 124:	41 00 20 40 41 3f 01 7f 08 14 22 41 7f 40 40 40     A. @A?...."A.@@@
+ 134:	40 7f 02 04 02 7f 7f 04 08 10 7f 3e 41 41 41 3e     @..........>AAA>
+ 144:	7f 09 09 09 06 3e 41 51 21 5e 7f 09 19 29 46 46     .....>AQ!^...)FF
+ 154:	49 49 49 31 01 01 7f 01 01 3f 40 40 40 3f 1f 20     III1.....?@@@?. 
+ 164:	40 20 1f 7f 20 18 20 7f 63 14 08 14 63 03 04 78     @ .. . .c...c..x
+ 174:	04 03 61 51 49 45 43 00 00 7f 41 41 02 04 08 10     ..aQIEC...AA....
+ 184:	20 41 41 7f 00 00 04 02 01 02 04 40 40 40 40 40      AA........@@@@@
+ 194:	00 01 02 04 00 20 54 54 54 78 7f 48 44 44 38 38     ..... TTTx.HDD88
+ 1a4:	44 44 44 20 38 44 44 48 7f 38 54 54 54 18 08 7e     DDD 8DDH.8TTT..~
+ 1b4:	09 01 02 08 14 54 54 3c 7f 08 04 04 78 00 44 7d     .....TT<....x.D}
+ 1c4:	40 00 20 40 44 3d 00 00 7f 10 28 44 00 41 7f 40     @. @D=....(D.A.@
+ 1d4:	00 7c 04 18 04 78 7c 08 04 04 78 38 44 44 44 38     .|...x|...x8DDD8
+ 1e4:	7c 14 14 14 08 08 14 14 18 7c 7c 08 04 04 08 48     |........||....H
+ 1f4:	54 54 54 20 04 3f 44 40 20 3c 40 40 20 7c 1c 20     TTT .?D@ <@@ |. 
+ 204:	40 20 1c 3c 40 30 40 3c 44 28 10 28 44 0c 50 50     @ .<@0@<D(.(D.PP
+ 214:	50 3c 44 64 54 4c 44 00 08 36 41 00 00 00 7f 00     P<DdTLD..6A.....
+ 224:	00 00 41 36 08 00 08 08 2a 1c 08 08 1c 2a 08 08     ..A6....*....*..
 
-00000068 <__bad_interrupt>:
-  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000234 <__ctors_end>:
+ 234:	11 24       	eor	r1, r1
+ 236:	1f be       	out	0x3f, r1	; 63
+ 238:	cf e5       	ldi	r28, 0x5F	; 95
+ 23a:	d4 e0       	ldi	r29, 0x04	; 4
+ 23c:	de bf       	out	0x3e, r29	; 62
+ 23e:	cd bf       	out	0x3d, r28	; 61
 
-0000006c <delayT1>:
+00000240 <__do_copy_data>:
+ 240:	10 e0       	ldi	r17, 0x00	; 0
+ 242:	a0 e6       	ldi	r26, 0x60	; 96
+ 244:	b0 e0       	ldi	r27, 0x00	; 0
+ 246:	e4 e8       	ldi	r30, 0x84	; 132
+ 248:	f5 e0       	ldi	r31, 0x05	; 5
+ 24a:	02 c0       	rjmp	.+4      	; 0x250 <__do_copy_data+0x10>
+ 24c:	05 90       	lpm	r0, Z+
+ 24e:	0d 92       	st	X+, r0
+ 250:	ae 36       	cpi	r26, 0x6E	; 110
+ 252:	b1 07       	cpc	r27, r17
+ 254:	d9 f7       	brne	.-10     	; 0x24c <__do_copy_data+0xc>
+
+00000256 <__do_clear_bss>:
+ 256:	20 e0       	ldi	r18, 0x00	; 0
+ 258:	ae e6       	ldi	r26, 0x6E	; 110
+ 25a:	b0 e0       	ldi	r27, 0x00	; 0
+ 25c:	01 c0       	rjmp	.+2      	; 0x260 <.do_clear_bss_start>
+
+0000025e <.do_clear_bss_loop>:
+ 25e:	1d 92       	st	X+, r1
+
+00000260 <.do_clear_bss_start>:
+ 260:	a0 37       	cpi	r26, 0x70	; 112
+ 262:	b2 07       	cpc	r27, r18
+ 264:	e1 f7       	brne	.-8      	; 0x25e <.do_clear_bss_loop>
+ 266:	0e 94 77 02 	call	0x4ee	; 0x4ee <main>
+ 26a:	0c 94 c0 02 	jmp	0x580	; 0x580 <_exit>
+
+0000026e <__bad_interrupt>:
+ 26e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000272 <delayT1>:
+}
+void GotoLine(uint8_t y)
+// position character cursor to start of line y, where 0<y<19.
+{
+	curX = 0;
+	curY = y;
+ 272:	80 e8       	ldi	r24, 0x80	; 128
+ 274:	91 ec       	ldi	r25, 0xC1	; 193
+ 276:	9d bd       	out	0x2d, r25	; 45
+ 278:	8c bd       	out	0x2c, r24	; 44
+ 27a:	1f bc       	out	0x2f, r1	; 47
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	8e bd       	out	0x2e, r24	; 46
+ 280:	08 b6       	in	r0, 0x38	; 56
+ 282:	02 fe       	sbrs	r0, 2
+ 284:	fd cf       	rjmp	.-6      	; 0x280 <delayT1+0xe>
+ 286:	1e bc       	out	0x2e, r1	; 46
+ 288:	84 e0       	ldi	r24, 0x04	; 4
+ 28a:	88 bf       	out	0x38, r24	; 56
+ 28c:	08 95       	ret
+
+0000028e <xFer>:
+ 28e:	8f b9       	out	0x0f, r24	; 15
+ 290:	77 9b       	sbis	0x0e, 7	; 14
+ 292:	fe cf       	rjmp	.-4      	; 0x290 <xFer+0x2>
+ 294:	8f b1       	in	r24, 0x0f	; 15
+ 296:	08 95       	ret
+
+00000298 <TFTSPI>:
+ 298:	b8 9a       	sbi	0x17, 0	; 23
+ 29a:	c0 98       	cbi	0x18, 0	; 24
+ 29c:	87 b3       	in	r24, 0x17	; 23
+ 29e:	80 6a       	ori	r24, 0xA0	; 160
+ 2a0:	87 bb       	out	0x17, r24	; 23
+ 2a2:	8d b1       	in	r24, 0x0d	; 13
+ 2a4:	80 65       	ori	r24, 0x50	; 80
+ 2a6:	8d b9       	out	0x0d, r24	; 13
+ 2a8:	08 95       	ret
+
+000002aa <writeCMD>:
+ 2aa:	91 98       	cbi	0x12, 1	; 18
+ 2ac:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 2b0:	91 9a       	sbi	0x12, 1	; 18
+ 2b2:	08 95       	ret
+
+000002b4 <writeData16bit>:
+ 2b4:	9f b9       	out	0x0f, r25	; 15
+ 2b6:	77 9b       	sbis	0x0e, 7	; 14
+ 2b8:	fe cf       	rjmp	.-4      	; 0x2b6 <writeData16bit+0x2>
+ 2ba:	8f b9       	out	0x0f, r24	; 15
+ 2bc:	77 9b       	sbis	0x0e, 7	; 14
+ 2be:	fe cf       	rjmp	.-4      	; 0x2bc <writeData16bit+0x8>
+ 2c0:	8f b1       	in	r24, 0x0f	; 15
+ 2c2:	08 95       	ret
+
+000002c4 <hardwareReset>:
+ 2c4:	97 98       	cbi	0x12, 7	; 18
+ 2c6:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+ 2ca:	97 9a       	sbi	0x12, 7	; 18
+ 2cc:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+ 2d0:	08 95       	ret
+
+000002d2 <InitDisplay>:
+ 2d2:	0e 94 62 01 	call	0x2c4	; 0x2c4 <hardwareReset>
+ 2d6:	81 e1       	ldi	r24, 0x11	; 17
+ 2d8:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 2dc:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+ 2e0:	8a e3       	ldi	r24, 0x3A	; 58
+ 2e2:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 2e6:	85 e0       	ldi	r24, 0x05	; 5
+ 2e8:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 2ec:	89 e2       	ldi	r24, 0x29	; 41
+ 2ee:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 2f2:	08 95       	ret
+
+000002f4 <setAddrWindow>:
+ 2f4:	0f 93       	push	r16
+ 2f6:	1f 93       	push	r17
+ 2f8:	cf 93       	push	r28
+ 2fa:	df 93       	push	r29
+ 2fc:	08 2f       	mov	r16, r24
+ 2fe:	d6 2f       	mov	r29, r22
+ 300:	14 2f       	mov	r17, r20
+ 302:	c2 2f       	mov	r28, r18
+ 304:	8a e2       	ldi	r24, 0x2A	; 42
+ 306:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 30a:	80 e0       	ldi	r24, 0x00	; 0
+ 30c:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 310:	80 2f       	mov	r24, r16
+ 312:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 316:	80 e0       	ldi	r24, 0x00	; 0
+ 318:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 31c:	81 2f       	mov	r24, r17
+ 31e:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 322:	8b e2       	ldi	r24, 0x2B	; 43
+ 324:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 328:	80 e0       	ldi	r24, 0x00	; 0
+ 32a:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 32e:	8d 2f       	mov	r24, r29
+ 330:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 334:	80 e0       	ldi	r24, 0x00	; 0
+ 336:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 33a:	8c 2f       	mov	r24, r28
+ 33c:	0e 94 47 01 	call	0x28e	; 0x28e <xFer>
+ 340:	df 91       	pop	r29
+ 342:	cf 91       	pop	r28
+ 344:	1f 91       	pop	r17
+ 346:	0f 91       	pop	r16
+ 348:	08 95       	ret
+
+0000034a <clearScreen>:
+ 34a:	2f e7       	ldi	r18, 0x7F	; 127
+ 34c:	4f e7       	ldi	r20, 0x7F	; 127
+ 34e:	60 e0       	ldi	r22, 0x00	; 0
+ 350:	80 e0       	ldi	r24, 0x00	; 0
+ 352:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
+ 356:	8c e2       	ldi	r24, 0x2C	; 44
+ 358:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 35c:	80 e0       	ldi	r24, 0x00	; 0
+ 35e:	90 ea       	ldi	r25, 0xA0	; 160
+ 360:	1f b8       	out	0x0f, r1	; 15
+ 362:	77 9b       	sbis	0x0e, 7	; 14
+ 364:	fe cf       	rjmp	.-4      	; 0x362 <clearScreen+0x18>
+ 366:	01 97       	sbiw	r24, 0x01	; 1
+ 368:	d9 f7       	brne	.-10     	; 0x360 <clearScreen+0x16>
+ 36a:	08 95       	ret
+
+0000036c <putCh>:
+ 36c:	9f 92       	push	r9
+ 36e:	af 92       	push	r10
+ 370:	bf 92       	push	r11
+ 372:	cf 92       	push	r12
+ 374:	df 92       	push	r13
+ 376:	ef 92       	push	r14
+ 378:	ff 92       	push	r15
+ 37a:	0f 93       	push	r16
+ 37c:	1f 93       	push	r17
+ 37e:	cf 93       	push	r28
+ 380:	df 93       	push	r29
+ 382:	c8 2f       	mov	r28, r24
+ 384:	86 2f       	mov	r24, r22
+ 386:	64 2f       	mov	r22, r20
+ 388:	b2 2e       	mov	r11, r18
+ 38a:	c3 2e       	mov	r12, r19
+ 38c:	26 e0       	ldi	r18, 0x06	; 6
+ 38e:	24 0f       	add	r18, r20
+ 390:	44 e0       	ldi	r20, 0x04	; 4
+ 392:	48 0f       	add	r20, r24
+ 394:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
+ 398:	8c e2       	ldi	r24, 0x2C	; 44
+ 39a:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 39e:	8c 2f       	mov	r24, r28
+ 3a0:	90 e0       	ldi	r25, 0x00	; 0
+ 3a2:	80 97       	sbiw	r24, 0x20	; 32
+ 3a4:	7c 01       	movw	r14, r24
+ 3a6:	ee 0c       	add	r14, r14
+ 3a8:	ff 1c       	adc	r15, r15
+ 3aa:	ee 0c       	add	r14, r14
+ 3ac:	ff 1c       	adc	r15, r15
+ 3ae:	8e 0d       	add	r24, r14
+ 3b0:	9f 1d       	adc	r25, r15
+ 3b2:	9c 01       	movw	r18, r24
+ 3b4:	2c 5a       	subi	r18, 0xAC	; 172
+ 3b6:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3b8:	79 01       	movw	r14, r18
+ 3ba:	0f 2e       	mov	r0, r31
+ 3bc:	f7 e0       	ldi	r31, 0x07	; 7
+ 3be:	df 2e       	mov	r13, r31
+ 3c0:	f0 2d       	mov	r31, r0
+ 3c2:	d1 e0       	ldi	r29, 0x01	; 1
+ 3c4:	91 2c       	mov	r9, r1
+ 3c6:	a1 2c       	mov	r10, r1
+ 3c8:	14 c0       	rjmp	.+40     	; 0x3f2 <putCh+0x86>
+ 3ca:	f8 01       	movw	r30, r16
+ 3cc:	84 91       	lpm	r24, Z
+ 3ce:	8d 23       	and	r24, r29
+ 3d0:	19 f0       	breq	.+6      	; 0x3d8 <putCh+0x6c>
+ 3d2:	8b 2d       	mov	r24, r11
+ 3d4:	9c 2d       	mov	r25, r12
+ 3d6:	02 c0       	rjmp	.+4      	; 0x3dc <putCh+0x70>
+ 3d8:	89 2d       	mov	r24, r9
+ 3da:	9a 2d       	mov	r25, r10
+ 3dc:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <writeData16bit>
+ 3e0:	c1 50       	subi	r28, 0x01	; 1
+ 3e2:	0f 5f       	subi	r16, 0xFF	; 255
+ 3e4:	1f 4f       	sbci	r17, 0xFF	; 255
+ 3e6:	c1 11       	cpse	r28, r1
+ 3e8:	f0 cf       	rjmp	.-32     	; 0x3ca <putCh+0x5e>
+ 3ea:	dd 0f       	add	r29, r29
+ 3ec:	da 94       	dec	r13
+ 3ee:	dd 20       	and	r13, r13
+ 3f0:	19 f0       	breq	.+6      	; 0x3f8 <putCh+0x8c>
+ 3f2:	87 01       	movw	r16, r14
+ 3f4:	c5 e0       	ldi	r28, 0x05	; 5
+ 3f6:	e9 cf       	rjmp	.-46     	; 0x3ca <putCh+0x5e>
+ 3f8:	df 91       	pop	r29
+ 3fa:	cf 91       	pop	r28
+ 3fc:	1f 91       	pop	r17
+ 3fe:	0f 91       	pop	r16
+ 400:	ff 90       	pop	r15
+ 402:	ef 90       	pop	r14
+ 404:	df 90       	pop	r13
+ 406:	cf 90       	pop	r12
+ 408:	bf 90       	pop	r11
+ 40a:	af 90       	pop	r10
+ 40c:	9f 90       	pop	r9
+ 40e:	08 95       	ret
+
+00000410 <AdvanceCursor>:
+}
+void AdvanceCursor()
+// moves character cursor to next position, assuming portrait orientation
+{
+	curX++; // advance x position
+ 410:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <__data_end>
+ 414:	8f 5f       	subi	r24, 0xFF	; 255
+ 416:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__data_end>
+	if (curX>20) // beyond right margin?
+ 41a:	85 31       	cpi	r24, 0x15	; 21
+ 41c:	38 f0       	brcs	.+14     	; 0x42c <AdvanceCursor+0x1c>
+	{
+		curY++; // go to next line
+ 41e:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <curY>
+ 422:	8f 5f       	subi	r24, 0xFF	; 255
+ 424:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <curY>
+		curX = 0; // at left margin
+ 428:	10 92 6e 00 	sts	0x006E, r1	; 0x80006e <__data_end>
+	}
+	if (curY>19) // beyond bottom margin?
+ 42c:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <curY>
+ 430:	84 31       	cpi	r24, 0x14	; 20
+ 432:	10 f0       	brcs	.+4      	; 0x438 <AdvanceCursor+0x28>
+	curY = 0; // start at top again
+ 434:	10 92 6f 00 	sts	0x006F, r1	; 0x80006f <curY>
+ 438:	08 95       	ret
+
+0000043a <writeChar>:
 }
 
-void writeData (uint8_t b)
+
+void writeChar(char ch, uint16_t color)
+// writes character to display at current cursor position.
 {
-	
-	xfer(b);
-  6c:	80 e8       	ldi	r24, 0x80	; 128
-  6e:	91 ec       	ldi	r25, 0xC1	; 193
-  70:	9d bd       	out	0x2d, r25	; 45
-  72:	8c bd       	out	0x2c, r24	; 44
-  74:	1f bc       	out	0x2f, r1	; 47
-  76:	81 e0       	ldi	r24, 0x01	; 1
-  78:	8e bd       	out	0x2e, r24	; 46
-  7a:	08 b6       	in	r0, 0x38	; 56
-  7c:	02 fe       	sbrs	r0, 2
-  7e:	fd cf       	rjmp	.-6      	; 0x7a <delayT1+0xe>
-  80:	1e bc       	out	0x2e, r1	; 46
-  82:	84 e0       	ldi	r24, 0x04	; 4
-  84:	88 bf       	out	0x38, r24	; 56
-  86:	08 95       	ret
+ 43a:	9b 01       	movw	r18, r22
+	putCh(ch,curX*6, curY*8, color);
+ 43c:	40 91 6f 00 	lds	r20, 0x006F	; 0x80006f <curY>
+ 440:	44 0f       	add	r20, r20
+ 442:	44 0f       	add	r20, r20
+ 444:	44 0f       	add	r20, r20
+ 446:	90 91 6e 00 	lds	r25, 0x006E	; 0x80006e <__data_end>
+ 44a:	69 2f       	mov	r22, r25
+ 44c:	66 0f       	add	r22, r22
+ 44e:	96 0f       	add	r25, r22
+ 450:	69 2f       	mov	r22, r25
+ 452:	66 0f       	add	r22, r22
+ 454:	0e 94 b6 01 	call	0x36c	; 0x36c <putCh>
+	AdvanceCursor();
+ 458:	0e 94 08 02 	call	0x410	; 0x410 <AdvanceCursor>
+ 45c:	08 95       	ret
 
-00000088 <xfer>:
-  88:	8f b9       	out	0x0f, r24	; 15
-  8a:	77 9b       	sbis	0x0e, 7	; 14
-  8c:	fe cf       	rjmp	.-4      	; 0x8a <xfer+0x2>
-  8e:	8f b1       	in	r24, 0x0f	; 15
-  90:	08 95       	ret
-
-00000092 <TFTSPI>:
-  92:	b8 9a       	sbi	0x17, 0	; 23
-  94:	c0 98       	cbi	0x18, 0	; 24
-  96:	87 b3       	in	r24, 0x17	; 23
-  98:	80 6a       	ori	r24, 0xA0	; 160
-  9a:	87 bb       	out	0x17, r24	; 23
-  9c:	8d b1       	in	r24, 0x0d	; 13
-  9e:	80 65       	ori	r24, 0x50	; 80
-  a0:	8d b9       	out	0x0d, r24	; 13
-  a2:	08 95       	ret
-
-000000a4 <writeCMD>:
-  a4:	91 98       	cbi	0x12, 1	; 18
-  a6:	0e 94 44 00 	call	0x88	; 0x88 <xfer>
-  aa:	91 9a       	sbi	0x12, 1	; 18
-  ac:	08 95       	ret
-
-000000ae <HardwareReset>:
-
-void HardwareReset()
-{
-	
-	
-	PORTD &=~(1<<7);
-  ae:	97 98       	cbi	0x12, 7	; 18
-	delayT1();
-  b0:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
-	PORTD |=(1<<7);
-  b4:	97 9a       	sbi	0x12, 7	; 18
-	delayT1();
-  b6:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
-  ba:	08 95       	ret
-
-000000bc <InitDisplay>:
+0000045e <writeString>:
 }
-
-void InitDisplay()
+void writeString(char *text, uint16_t color)
+// writes string to display at current cursor position.
 {
-	
-	HardwareReset();
-  bc:	0e 94 57 00 	call	0xae	; 0xae <HardwareReset>
-	writeCMD(SLPOUT);
-  c0:	81 e1       	ldi	r24, 0x11	; 17
-  c2:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
-	delayT1();
-  c6:	0e 94 36 00 	call	0x6c	; 0x6c <delayT1>
-	
-	writeCMD(COLMOD);
-  ca:	8a e3       	ldi	r24, 0x3A	; 58
-  cc:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
+ 45e:	0f 93       	push	r16
+ 460:	1f 93       	push	r17
+ 462:	cf 93       	push	r28
+ 464:	df 93       	push	r29
+ 466:	ec 01       	movw	r28, r24
+	for (;*text;text++) // for all non-nul chars
+ 468:	88 81       	ld	r24, Y
+ 46a:	88 23       	and	r24, r24
+ 46c:	41 f0       	breq	.+16     	; 0x47e <__stack+0x1f>
+ 46e:	8b 01       	movw	r16, r22
+ 470:	21 96       	adiw	r28, 0x01	; 1
+	writeChar(*text,color); // write the char
+ 472:	b8 01       	movw	r22, r16
+ 474:	0e 94 1d 02 	call	0x43a	; 0x43a <writeChar>
+	AdvanceCursor();
 }
-
-void writeData (uint8_t b)
+void writeString(char *text, uint16_t color)
+// writes string to display at current cursor position.
 {
-	
-	xfer(b);
-  d0:	85 e0       	ldi	r24, 0x05	; 5
-  d2:	0e 94 44 00 	call	0x88	; 0x88 <xfer>
-	writeCMD(SLPOUT);
-	delayT1();
-	
-	writeCMD(COLMOD);
-	writeData(0x05);
-	writeCMD(DISPON);
-  d6:	89 e2       	ldi	r24, 0x29	; 41
-  d8:	0e 94 52 00 	call	0xa4	; 0xa4 <writeCMD>
-  dc:	08 95       	ret
-
-000000de <main>:
+	for (;*text;text++) // for all non-nul chars
+ 478:	89 91       	ld	r24, Y+
+ 47a:	81 11       	cpse	r24, r1
+ 47c:	fa cf       	rjmp	.-12     	; 0x472 <__stack+0x13>
+	writeChar(*text,color); // write the char
 }
+ 47e:	df 91       	pop	r29
+ 480:	cf 91       	pop	r28
+ 482:	1f 91       	pop	r17
+ 484:	0f 91       	pop	r16
+ 486:	08 95       	ret
 
+00000488 <portraitChars>:
+
+
+void portraitChars()
+// Writes 378 characters (5x7) to screen in portrait mode
+{
+ 488:	ef 92       	push	r14
+ 48a:	ff 92       	push	r15
+ 48c:	0f 93       	push	r16
+ 48e:	1f 93       	push	r17
+ 490:	cf 93       	push	r28
+ 492:	df 93       	push	r29
+	clearScreen();
+ 494:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
+	for (int i=378;i>0;i--)
+ 498:	ca e7       	ldi	r28, 0x7A	; 122
+ 49a:	d1 e0       	ldi	r29, 0x01	; 1
+	{
+		uint8_t x= i % 21;
+		uint8_t y= i / 21;
+		char ascii = (i % 96)+32;
+		putCh(ascii,x*6,y*8,BLUE);
+ 49c:	0f 2e       	mov	r0, r31
+ 49e:	f5 e1       	ldi	r31, 0x15	; 21
+ 4a0:	ef 2e       	mov	r14, r31
+ 4a2:	f1 2c       	mov	r15, r1
+ 4a4:	f0 2d       	mov	r31, r0
+ 4a6:	00 e6       	ldi	r16, 0x60	; 96
+ 4a8:	10 e0       	ldi	r17, 0x00	; 0
+ 4aa:	ce 01       	movw	r24, r28
+ 4ac:	b7 01       	movw	r22, r14
+ 4ae:	0e 94 98 02 	call	0x530	; 0x530 <__divmodhi4>
+ 4b2:	46 2f       	mov	r20, r22
+ 4b4:	44 0f       	add	r20, r20
+ 4b6:	44 0f       	add	r20, r20
+ 4b8:	44 0f       	add	r20, r20
+ 4ba:	e8 2f       	mov	r30, r24
+ 4bc:	ee 0f       	add	r30, r30
+ 4be:	8e 0f       	add	r24, r30
+ 4c0:	e8 2f       	mov	r30, r24
+ 4c2:	ee 0f       	add	r30, r30
+ 4c4:	ce 01       	movw	r24, r28
+ 4c6:	b8 01       	movw	r22, r16
+ 4c8:	0e 94 98 02 	call	0x530	; 0x530 <__divmodhi4>
+ 4cc:	2f e1       	ldi	r18, 0x1F	; 31
+ 4ce:	30 e0       	ldi	r19, 0x00	; 0
+ 4d0:	6e 2f       	mov	r22, r30
+ 4d2:	80 5e       	subi	r24, 0xE0	; 224
+ 4d4:	0e 94 b6 01 	call	0x36c	; 0x36c <putCh>
+
+void portraitChars()
+// Writes 378 characters (5x7) to screen in portrait mode
+{
+	clearScreen();
+	for (int i=378;i>0;i--)
+ 4d8:	21 97       	sbiw	r28, 0x01	; 1
+ 4da:	39 f7       	brne	.-50     	; 0x4aa <portraitChars+0x22>
+		uint8_t x= i % 21;
+		uint8_t y= i / 21;
+		char ascii = (i % 96)+32;
+		putCh(ascii,x*6,y*8,BLUE);
+	}
+	delayT1();
+ 4dc:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+}
+ 4e0:	df 91       	pop	r29
+ 4e2:	cf 91       	pop	r28
+ 4e4:	1f 91       	pop	r17
+ 4e6:	0f 91       	pop	r16
+ 4e8:	ff 90       	pop	r15
+ 4ea:	ef 90       	pop	r14
+ 4ec:	08 95       	ret
+
+000004ee <main>:
+
+//-------------------------------------------------------------------------------------------
 int main ()
 {
 	
 	DDRD |=(1<<LED)|(1<<DC); 
-  de:	81 b3       	in	r24, 0x11	; 17
-  e0:	83 60       	ori	r24, 0x03	; 3
-  e2:	81 bb       	out	0x11, r24	; 17
+ 4ee:	81 b3       	in	r24, 0x11	; 17
+ 4f0:	83 60       	ori	r24, 0x03	; 3
+ 4f2:	81 bb       	out	0x11, r24	; 17
 	DDRD|= (1<<RESET);
-  e4:	8f 9a       	sbi	0x11, 7	; 17
+ 4f4:	8f 9a       	sbi	0x11, 7	; 17
 	PORTD |=(1<<RESET);
-  e6:	97 9a       	sbi	0x12, 7	; 18
+ 4f6:	97 9a       	sbi	0x12, 7	; 18
 	
 	TFTSPI();
-  e8:	0e 94 49 00 	call	0x92	; 0x92 <TFTSPI>
+ 4f8:	0e 94 4c 01 	call	0x298	; 0x298 <TFTSPI>
 	InitDisplay();
-  ec:	0e 94 5e 00 	call	0xbc	; 0xbc <InitDisplay>
+ 4fc:	0e 94 69 01 	call	0x2d2	; 0x2d2 <InitDisplay>
+	clearScreen();
+ 500:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
+	portraitChars();
+ 504:	0e 94 44 02 	call	0x488	; 0x488 <portraitChars>
+	delayT1();
+ 508:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+	clearScreen();
+ 50c:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
+
+
+void gotoXY (uint8_t x,uint8_t y)
+// position cursor on character x,y grid, where 0<x<20, 0<y<19.
+{
+	curX = x;
+ 510:	84 e0       	ldi	r24, 0x04	; 4
+ 512:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__data_end>
+	curY = y;
+ 516:	89 e0       	ldi	r24, 0x09	; 9
+ 518:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <curY>
+	clearScreen();
+	
+	char *str = "Hello, World!"; // text to display
+	
+	gotoXY(4,9); // position text cursor
+	writeString(str,BLUE);
+ 51c:	6f e1       	ldi	r22, 0x1F	; 31
+ 51e:	70 e0       	ldi	r23, 0x00	; 0
+ 520:	80 e6       	ldi	r24, 0x60	; 96
+ 522:	90 e0       	ldi	r25, 0x00	; 0
+ 524:	0e 94 2f 02 	call	0x45e	; 0x45e <writeString>
 	PORTD |= (1<<LED);
-  f0:	90 9a       	sbi	0x12, 0	; 18
+ 528:	90 9a       	sbi	0x12, 0	; 18
 	
 	
 	
 	
 }
-  f2:	80 e0       	ldi	r24, 0x00	; 0
-  f4:	90 e0       	ldi	r25, 0x00	; 0
-  f6:	08 95       	ret
+ 52a:	80 e0       	ldi	r24, 0x00	; 0
+ 52c:	90 e0       	ldi	r25, 0x00	; 0
+ 52e:	08 95       	ret
 
-000000f8 <_exit>:
-  f8:	f8 94       	cli
+00000530 <__divmodhi4>:
+ 530:	97 fb       	bst	r25, 7
+ 532:	07 2e       	mov	r0, r23
+ 534:	16 f4       	brtc	.+4      	; 0x53a <__divmodhi4+0xa>
+ 536:	00 94       	com	r0
+ 538:	07 d0       	rcall	.+14     	; 0x548 <__divmodhi4_neg1>
+ 53a:	77 fd       	sbrc	r23, 7
+ 53c:	09 d0       	rcall	.+18     	; 0x550 <__divmodhi4_neg2>
+ 53e:	0e 94 ac 02 	call	0x558	; 0x558 <__udivmodhi4>
+ 542:	07 fc       	sbrc	r0, 7
+ 544:	05 d0       	rcall	.+10     	; 0x550 <__divmodhi4_neg2>
+ 546:	3e f4       	brtc	.+14     	; 0x556 <__divmodhi4_exit>
 
-000000fa <__stop_program>:
-  fa:	ff cf       	rjmp	.-2      	; 0xfa <__stop_program>
+00000548 <__divmodhi4_neg1>:
+ 548:	90 95       	com	r25
+ 54a:	81 95       	neg	r24
+ 54c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 54e:	08 95       	ret
+
+00000550 <__divmodhi4_neg2>:
+ 550:	70 95       	com	r23
+ 552:	61 95       	neg	r22
+ 554:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000556 <__divmodhi4_exit>:
+ 556:	08 95       	ret
+
+00000558 <__udivmodhi4>:
+ 558:	aa 1b       	sub	r26, r26
+ 55a:	bb 1b       	sub	r27, r27
+ 55c:	51 e1       	ldi	r21, 0x11	; 17
+ 55e:	07 c0       	rjmp	.+14     	; 0x56e <__udivmodhi4_ep>
+
+00000560 <__udivmodhi4_loop>:
+ 560:	aa 1f       	adc	r26, r26
+ 562:	bb 1f       	adc	r27, r27
+ 564:	a6 17       	cp	r26, r22
+ 566:	b7 07       	cpc	r27, r23
+ 568:	10 f0       	brcs	.+4      	; 0x56e <__udivmodhi4_ep>
+ 56a:	a6 1b       	sub	r26, r22
+ 56c:	b7 0b       	sbc	r27, r23
+
+0000056e <__udivmodhi4_ep>:
+ 56e:	88 1f       	adc	r24, r24
+ 570:	99 1f       	adc	r25, r25
+ 572:	5a 95       	dec	r21
+ 574:	a9 f7       	brne	.-22     	; 0x560 <__udivmodhi4_loop>
+ 576:	80 95       	com	r24
+ 578:	90 95       	com	r25
+ 57a:	bc 01       	movw	r22, r24
+ 57c:	cd 01       	movw	r24, r26
+ 57e:	08 95       	ret
+
+00000580 <_exit>:
+ 580:	f8 94       	cli
+
+00000582 <__stop_program>:
+ 582:	ff cf       	rjmp	.-2      	; 0x582 <__stop_program>

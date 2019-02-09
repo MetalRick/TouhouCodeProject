@@ -1,60 +1,10 @@
-/** 
- * LCD driver for controller st7735.h / 1.8 TFT DISPLAY /
- *
- * Copyright (C) 2016 Marian Hrinko.
- * Written by Marian Hrinko (mato.hrinko@gmail.com)
- *
- * @author      Marian Hrinko
- * @datum       08.01.2016
- * @file        st7735.h
- * @tested      AVR Atmega16
- * @inspiration http://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf
- *              https://github.com/adafruit/Adafruit-ST7735-Library
- *              http://w8bh.net/avr/AvrTFT.pdf
- *
- */
+
 #include <avr/pgmspace.h>
 
 #ifndef __ST7735_H__
 #define __ST7735_H__
 
-  #ifndef PORT
-    #define PORT PORTB
-  #endif
-  #ifndef DDR
-    #define DDR  DDRB
-  #endif
-  #ifndef ST7735_DC_LD
-    #define ST7735_DC_LD  PB1
-  #endif
-  #ifndef ST7735_BL
-    #define ST7735_BL     PB2
-  #endif
-  #ifndef ST7735_CS_SD
-    #define ST7735_CS_SD  PB3
-  #endif
-  #ifndef ST7735_CS_LD
-    #define ST7735_CS_LD  PB4
-  #endif
-  #ifndef ST7735_MOSI
-    #define ST7735_MOSI   PB5
-  #endif
-  #ifndef ST7735_MISO
-    #define ST7735_MISO   PB6
-  #endif
-  #ifndef ST7735_SCK
-    #define ST7735_SCK    PB7
-  #endif
 
-  #ifndef HW_RESET_DDR
-    #define HW_RESET_DDR  DDR
-  #endif
-  #ifndef HW_RESET_PORT
-    #define HW_RESET_PORT PORT
-  #endif
-  #ifndef HW_RESET_PIN
-    #define HW_RESET_PIN  PB0
-  #endif
 
   #define DELAY   0x80
   
@@ -103,6 +53,17 @@
   #define GMCTRN1 0xE1
 
   #define PWCTR6  0xFC
+
+	// Color constants
+	#define BLACK 0x0000
+	#define BLUE 0x001F
+	#define RED 0xF800
+	#define GREEN 0x0400
+	#define LIME 0x07E0
+	#define CYAN 0x07FF
+	#define MAGENTA 0xF81F
+	#define YELLOW 0xFFE0
+	#define WHITE 0xFFFF
 
   // MV = 0 in MADCTL
   // max columns
