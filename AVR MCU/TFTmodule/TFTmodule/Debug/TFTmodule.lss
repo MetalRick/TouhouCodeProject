@@ -3,31 +3,31 @@ TFTmodule.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000584  00000000  00000000  00000094  2**1
+  0 .text         000005ea  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000e  00800060  00000584  00000618  2**0
+  1 .data         00000012  00800060  000005ea  0000067e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000002  0080006e  0080006e  00000626  2**0
+  2 .bss          00000002  00800072  00800072  00000690  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000626  2**0
+  3 .comment      00000030  00000000  00000000  00000690  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000658  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006c0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000b8  00000000  00000000  00000694  2**0
+  5 .debug_aranges 000000b8  00000000  00000000  000006fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000e09  00000000  00000000  0000074c  2**0
+  6 .debug_info   00000ebd  00000000  00000000  000007b4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000007bb  00000000  00000000  00001555  2**0
+  7 .debug_abbrev 000007e5  00000000  00000000  00001671  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000005a1  00000000  00000000  00001d10  2**0
+  8 .debug_line   00000601  00000000  00000000  00001e56  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001d4  00000000  00000000  000022b4  2**2
+  9 .debug_frame  000001e8  00000000  00000000  00002458  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000041a  00000000  00000000  00002488  2**0
+ 10 .debug_str    0000041a  00000000  00000000  00002640  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000793  00000000  00000000  000028a2  2**0
+ 11 .debug_loc    000008c0  00000000  00000000  00002a5a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000a8  00000000  00000000  00003035  2**0
+ 12 .debug_ranges 000000d8  00000000  00000000  0000331a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -99,18 +99,18 @@ Disassembly of section .text:
  240:	10 e0       	ldi	r17, 0x00	; 0
  242:	a0 e6       	ldi	r26, 0x60	; 96
  244:	b0 e0       	ldi	r27, 0x00	; 0
- 246:	e4 e8       	ldi	r30, 0x84	; 132
+ 246:	ea ee       	ldi	r30, 0xEA	; 234
  248:	f5 e0       	ldi	r31, 0x05	; 5
  24a:	02 c0       	rjmp	.+4      	; 0x250 <__do_copy_data+0x10>
  24c:	05 90       	lpm	r0, Z+
  24e:	0d 92       	st	X+, r0
- 250:	ae 36       	cpi	r26, 0x6E	; 110
+ 250:	a2 37       	cpi	r26, 0x72	; 114
  252:	b1 07       	cpc	r27, r17
  254:	d9 f7       	brne	.-10     	; 0x24c <__do_copy_data+0xc>
 
 00000256 <__do_clear_bss>:
  256:	20 e0       	ldi	r18, 0x00	; 0
- 258:	ae e6       	ldi	r26, 0x6E	; 110
+ 258:	a2 e7       	ldi	r26, 0x72	; 114
  25a:	b0 e0       	ldi	r27, 0x00	; 0
  25c:	01 c0       	rjmp	.+2      	; 0x260 <.do_clear_bss_start>
 
@@ -118,11 +118,11 @@ Disassembly of section .text:
  25e:	1d 92       	st	X+, r1
 
 00000260 <.do_clear_bss_start>:
- 260:	a0 37       	cpi	r26, 0x70	; 112
+ 260:	a4 37       	cpi	r26, 0x74	; 116
  262:	b2 07       	cpc	r27, r18
  264:	e1 f7       	brne	.-8      	; 0x25e <.do_clear_bss_loop>
- 266:	0e 94 77 02 	call	0x4ee	; 0x4ee <main>
- 26a:	0c 94 c0 02 	jmp	0x580	; 0x580 <_exit>
+ 266:	0e 94 b7 02 	call	0x56e	; 0x56e <main>
+ 26a:	0c 94 f3 02 	jmp	0x5e6	; 0x5e6 <_exit>
 
 0000026e <__bad_interrupt>:
  26e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -238,380 +238,510 @@ void GotoLine(uint8_t y)
  346:	0f 91       	pop	r16
  348:	08 95       	ret
 
-0000034a <clearScreen>:
- 34a:	2f e7       	ldi	r18, 0x7F	; 127
- 34c:	4f e7       	ldi	r20, 0x7F	; 127
- 34e:	60 e0       	ldi	r22, 0x00	; 0
- 350:	80 e0       	ldi	r24, 0x00	; 0
- 352:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
- 356:	8c e2       	ldi	r24, 0x2C	; 44
- 358:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
- 35c:	80 e0       	ldi	r24, 0x00	; 0
- 35e:	90 ea       	ldi	r25, 0xA0	; 160
- 360:	1f b8       	out	0x0f, r1	; 15
- 362:	77 9b       	sbis	0x0e, 7	; 14
- 364:	fe cf       	rjmp	.-4      	; 0x362 <clearScreen+0x18>
- 366:	01 97       	sbiw	r24, 0x01	; 1
- 368:	d9 f7       	brne	.-10     	; 0x360 <clearScreen+0x16>
- 36a:	08 95       	ret
+0000034a <putCh>:
+ 34a:	9f 92       	push	r9
+ 34c:	af 92       	push	r10
+ 34e:	bf 92       	push	r11
+ 350:	cf 92       	push	r12
+ 352:	df 92       	push	r13
+ 354:	ef 92       	push	r14
+ 356:	ff 92       	push	r15
+ 358:	0f 93       	push	r16
+ 35a:	1f 93       	push	r17
+ 35c:	cf 93       	push	r28
+ 35e:	df 93       	push	r29
+ 360:	c8 2f       	mov	r28, r24
+ 362:	86 2f       	mov	r24, r22
+ 364:	64 2f       	mov	r22, r20
+ 366:	b2 2e       	mov	r11, r18
+ 368:	c3 2e       	mov	r12, r19
+ 36a:	26 e0       	ldi	r18, 0x06	; 6
+ 36c:	24 0f       	add	r18, r20
+ 36e:	44 e0       	ldi	r20, 0x04	; 4
+ 370:	48 0f       	add	r20, r24
+ 372:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
+ 376:	8c e2       	ldi	r24, 0x2C	; 44
+ 378:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 37c:	8c 2f       	mov	r24, r28
+ 37e:	90 e0       	ldi	r25, 0x00	; 0
+ 380:	80 97       	sbiw	r24, 0x20	; 32
+ 382:	7c 01       	movw	r14, r24
+ 384:	ee 0c       	add	r14, r14
+ 386:	ff 1c       	adc	r15, r15
+ 388:	ee 0c       	add	r14, r14
+ 38a:	ff 1c       	adc	r15, r15
+ 38c:	8e 0d       	add	r24, r14
+ 38e:	9f 1d       	adc	r25, r15
+ 390:	9c 01       	movw	r18, r24
+ 392:	2c 5a       	subi	r18, 0xAC	; 172
+ 394:	3f 4f       	sbci	r19, 0xFF	; 255
+ 396:	79 01       	movw	r14, r18
+ 398:	0f 2e       	mov	r0, r31
+ 39a:	f7 e0       	ldi	r31, 0x07	; 7
+ 39c:	df 2e       	mov	r13, r31
+ 39e:	f0 2d       	mov	r31, r0
+ 3a0:	d1 e0       	ldi	r29, 0x01	; 1
+ 3a2:	91 2c       	mov	r9, r1
+ 3a4:	a1 2c       	mov	r10, r1
+ 3a6:	14 c0       	rjmp	.+40     	; 0x3d0 <putCh+0x86>
+ 3a8:	f8 01       	movw	r30, r16
+ 3aa:	84 91       	lpm	r24, Z
+ 3ac:	8d 23       	and	r24, r29
+ 3ae:	19 f0       	breq	.+6      	; 0x3b6 <putCh+0x6c>
+ 3b0:	8b 2d       	mov	r24, r11
+ 3b2:	9c 2d       	mov	r25, r12
+ 3b4:	02 c0       	rjmp	.+4      	; 0x3ba <putCh+0x70>
+ 3b6:	89 2d       	mov	r24, r9
+ 3b8:	9a 2d       	mov	r25, r10
+ 3ba:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <writeData16bit>
+ 3be:	c1 50       	subi	r28, 0x01	; 1
+ 3c0:	0f 5f       	subi	r16, 0xFF	; 255
+ 3c2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 3c4:	c1 11       	cpse	r28, r1
+ 3c6:	f0 cf       	rjmp	.-32     	; 0x3a8 <putCh+0x5e>
+ 3c8:	dd 0f       	add	r29, r29
+ 3ca:	da 94       	dec	r13
+ 3cc:	dd 20       	and	r13, r13
+ 3ce:	19 f0       	breq	.+6      	; 0x3d6 <putCh+0x8c>
+ 3d0:	87 01       	movw	r16, r14
+ 3d2:	c5 e0       	ldi	r28, 0x05	; 5
+ 3d4:	e9 cf       	rjmp	.-46     	; 0x3a8 <putCh+0x5e>
+ 3d6:	df 91       	pop	r29
+ 3d8:	cf 91       	pop	r28
+ 3da:	1f 91       	pop	r17
+ 3dc:	0f 91       	pop	r16
+ 3de:	ff 90       	pop	r15
+ 3e0:	ef 90       	pop	r14
+ 3e2:	df 90       	pop	r13
+ 3e4:	cf 90       	pop	r12
+ 3e6:	bf 90       	pop	r11
+ 3e8:	af 90       	pop	r10
+ 3ea:	9f 90       	pop	r9
+ 3ec:	08 95       	ret
 
-0000036c <putCh>:
- 36c:	9f 92       	push	r9
- 36e:	af 92       	push	r10
- 370:	bf 92       	push	r11
- 372:	cf 92       	push	r12
- 374:	df 92       	push	r13
- 376:	ef 92       	push	r14
- 378:	ff 92       	push	r15
- 37a:	0f 93       	push	r16
- 37c:	1f 93       	push	r17
- 37e:	cf 93       	push	r28
- 380:	df 93       	push	r29
- 382:	c8 2f       	mov	r28, r24
- 384:	86 2f       	mov	r24, r22
- 386:	64 2f       	mov	r22, r20
- 388:	b2 2e       	mov	r11, r18
- 38a:	c3 2e       	mov	r12, r19
- 38c:	26 e0       	ldi	r18, 0x06	; 6
- 38e:	24 0f       	add	r18, r20
- 390:	44 e0       	ldi	r20, 0x04	; 4
- 392:	48 0f       	add	r20, r24
- 394:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
- 398:	8c e2       	ldi	r24, 0x2C	; 44
- 39a:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
- 39e:	8c 2f       	mov	r24, r28
- 3a0:	90 e0       	ldi	r25, 0x00	; 0
- 3a2:	80 97       	sbiw	r24, 0x20	; 32
- 3a4:	7c 01       	movw	r14, r24
- 3a6:	ee 0c       	add	r14, r14
- 3a8:	ff 1c       	adc	r15, r15
- 3aa:	ee 0c       	add	r14, r14
- 3ac:	ff 1c       	adc	r15, r15
- 3ae:	8e 0d       	add	r24, r14
- 3b0:	9f 1d       	adc	r25, r15
- 3b2:	9c 01       	movw	r18, r24
- 3b4:	2c 5a       	subi	r18, 0xAC	; 172
- 3b6:	3f 4f       	sbci	r19, 0xFF	; 255
- 3b8:	79 01       	movw	r14, r18
- 3ba:	0f 2e       	mov	r0, r31
- 3bc:	f7 e0       	ldi	r31, 0x07	; 7
- 3be:	df 2e       	mov	r13, r31
- 3c0:	f0 2d       	mov	r31, r0
- 3c2:	d1 e0       	ldi	r29, 0x01	; 1
- 3c4:	91 2c       	mov	r9, r1
- 3c6:	a1 2c       	mov	r10, r1
- 3c8:	14 c0       	rjmp	.+40     	; 0x3f2 <putCh+0x86>
- 3ca:	f8 01       	movw	r30, r16
- 3cc:	84 91       	lpm	r24, Z
- 3ce:	8d 23       	and	r24, r29
- 3d0:	19 f0       	breq	.+6      	; 0x3d8 <putCh+0x6c>
- 3d2:	8b 2d       	mov	r24, r11
- 3d4:	9c 2d       	mov	r25, r12
- 3d6:	02 c0       	rjmp	.+4      	; 0x3dc <putCh+0x70>
- 3d8:	89 2d       	mov	r24, r9
- 3da:	9a 2d       	mov	r25, r10
- 3dc:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <writeData16bit>
- 3e0:	c1 50       	subi	r28, 0x01	; 1
- 3e2:	0f 5f       	subi	r16, 0xFF	; 255
- 3e4:	1f 4f       	sbci	r17, 0xFF	; 255
- 3e6:	c1 11       	cpse	r28, r1
- 3e8:	f0 cf       	rjmp	.-32     	; 0x3ca <putCh+0x5e>
- 3ea:	dd 0f       	add	r29, r29
- 3ec:	da 94       	dec	r13
- 3ee:	dd 20       	and	r13, r13
- 3f0:	19 f0       	breq	.+6      	; 0x3f8 <putCh+0x8c>
- 3f2:	87 01       	movw	r16, r14
- 3f4:	c5 e0       	ldi	r28, 0x05	; 5
- 3f6:	e9 cf       	rjmp	.-46     	; 0x3ca <putCh+0x5e>
- 3f8:	df 91       	pop	r29
- 3fa:	cf 91       	pop	r28
- 3fc:	1f 91       	pop	r17
- 3fe:	0f 91       	pop	r16
- 400:	ff 90       	pop	r15
- 402:	ef 90       	pop	r14
- 404:	df 90       	pop	r13
- 406:	cf 90       	pop	r12
- 408:	bf 90       	pop	r11
- 40a:	af 90       	pop	r10
- 40c:	9f 90       	pop	r9
- 40e:	08 95       	ret
-
-00000410 <AdvanceCursor>:
+000003ee <AdvanceCursor>:
 }
 void AdvanceCursor()
 // moves character cursor to next position, assuming portrait orientation
 {
 	curX++; // advance x position
- 410:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <__data_end>
- 414:	8f 5f       	subi	r24, 0xFF	; 255
- 416:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__data_end>
+ 3ee:	80 91 72 00 	lds	r24, 0x0072	; 0x800072 <__data_end>
+ 3f2:	8f 5f       	subi	r24, 0xFF	; 255
+ 3f4:	80 93 72 00 	sts	0x0072, r24	; 0x800072 <__data_end>
 	if (curX>20) // beyond right margin?
- 41a:	85 31       	cpi	r24, 0x15	; 21
- 41c:	38 f0       	brcs	.+14     	; 0x42c <AdvanceCursor+0x1c>
+ 3f8:	85 31       	cpi	r24, 0x15	; 21
+ 3fa:	38 f0       	brcs	.+14     	; 0x40a <__LOCK_REGION_LENGTH__+0xa>
 	{
 		curY++; // go to next line
- 41e:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <curY>
- 422:	8f 5f       	subi	r24, 0xFF	; 255
- 424:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <curY>
+ 3fc:	80 91 73 00 	lds	r24, 0x0073	; 0x800073 <curY>
+ 400:	8f 5f       	subi	r24, 0xFF	; 255
+ 402:	80 93 73 00 	sts	0x0073, r24	; 0x800073 <curY>
 		curX = 0; // at left margin
- 428:	10 92 6e 00 	sts	0x006E, r1	; 0x80006e <__data_end>
+ 406:	10 92 72 00 	sts	0x0072, r1	; 0x800072 <__data_end>
 	}
 	if (curY>19) // beyond bottom margin?
- 42c:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <curY>
- 430:	84 31       	cpi	r24, 0x14	; 20
- 432:	10 f0       	brcs	.+4      	; 0x438 <AdvanceCursor+0x28>
+ 40a:	80 91 73 00 	lds	r24, 0x0073	; 0x800073 <curY>
+ 40e:	84 31       	cpi	r24, 0x14	; 20
+ 410:	10 f0       	brcs	.+4      	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
 	curY = 0; // start at top again
- 434:	10 92 6f 00 	sts	0x006F, r1	; 0x80006f <curY>
- 438:	08 95       	ret
+ 412:	10 92 73 00 	sts	0x0073, r1	; 0x800073 <curY>
+ 416:	08 95       	ret
 
-0000043a <writeChar>:
+00000418 <writeChar>:
 }
 
 
 void writeChar(char ch, uint16_t color)
 // writes character to display at current cursor position.
 {
- 43a:	9b 01       	movw	r18, r22
+ 418:	9b 01       	movw	r18, r22
 	putCh(ch,curX*6, curY*8, color);
- 43c:	40 91 6f 00 	lds	r20, 0x006F	; 0x80006f <curY>
- 440:	44 0f       	add	r20, r20
- 442:	44 0f       	add	r20, r20
- 444:	44 0f       	add	r20, r20
- 446:	90 91 6e 00 	lds	r25, 0x006E	; 0x80006e <__data_end>
- 44a:	69 2f       	mov	r22, r25
- 44c:	66 0f       	add	r22, r22
- 44e:	96 0f       	add	r25, r22
- 450:	69 2f       	mov	r22, r25
- 452:	66 0f       	add	r22, r22
- 454:	0e 94 b6 01 	call	0x36c	; 0x36c <putCh>
+ 41a:	40 91 73 00 	lds	r20, 0x0073	; 0x800073 <curY>
+ 41e:	44 0f       	add	r20, r20
+ 420:	44 0f       	add	r20, r20
+ 422:	44 0f       	add	r20, r20
+ 424:	90 91 72 00 	lds	r25, 0x0072	; 0x800072 <__data_end>
+ 428:	69 2f       	mov	r22, r25
+ 42a:	66 0f       	add	r22, r22
+ 42c:	96 0f       	add	r25, r22
+ 42e:	69 2f       	mov	r22, r25
+ 430:	66 0f       	add	r22, r22
+ 432:	0e 94 a5 01 	call	0x34a	; 0x34a <putCh>
 	AdvanceCursor();
- 458:	0e 94 08 02 	call	0x410	; 0x410 <AdvanceCursor>
- 45c:	08 95       	ret
+ 436:	0e 94 f7 01 	call	0x3ee	; 0x3ee <AdvanceCursor>
+ 43a:	08 95       	ret
 
-0000045e <writeString>:
+0000043c <writeString>:
 }
 void writeString(char *text, uint16_t color)
 // writes string to display at current cursor position.
 {
- 45e:	0f 93       	push	r16
- 460:	1f 93       	push	r17
- 462:	cf 93       	push	r28
- 464:	df 93       	push	r29
- 466:	ec 01       	movw	r28, r24
+ 43c:	0f 93       	push	r16
+ 43e:	1f 93       	push	r17
+ 440:	cf 93       	push	r28
+ 442:	df 93       	push	r29
+ 444:	ec 01       	movw	r28, r24
 	for (;*text;text++) // for all non-nul chars
- 468:	88 81       	ld	r24, Y
- 46a:	88 23       	and	r24, r24
- 46c:	41 f0       	breq	.+16     	; 0x47e <__stack+0x1f>
- 46e:	8b 01       	movw	r16, r22
- 470:	21 96       	adiw	r28, 0x01	; 1
+ 446:	88 81       	ld	r24, Y
+ 448:	88 23       	and	r24, r24
+ 44a:	41 f0       	breq	.+16     	; 0x45c <writeString+0x20>
+ 44c:	8b 01       	movw	r16, r22
+ 44e:	21 96       	adiw	r28, 0x01	; 1
 	writeChar(*text,color); // write the char
- 472:	b8 01       	movw	r22, r16
- 474:	0e 94 1d 02 	call	0x43a	; 0x43a <writeChar>
+ 450:	b8 01       	movw	r22, r16
+ 452:	0e 94 0c 02 	call	0x418	; 0x418 <writeChar>
 	AdvanceCursor();
 }
 void writeString(char *text, uint16_t color)
 // writes string to display at current cursor position.
 {
 	for (;*text;text++) // for all non-nul chars
- 478:	89 91       	ld	r24, Y+
- 47a:	81 11       	cpse	r24, r1
- 47c:	fa cf       	rjmp	.-12     	; 0x472 <__stack+0x13>
+ 456:	89 91       	ld	r24, Y+
+ 458:	81 11       	cpse	r24, r1
+ 45a:	fa cf       	rjmp	.-12     	; 0x450 <writeString+0x14>
 	writeChar(*text,color); // write the char
 }
- 47e:	df 91       	pop	r29
- 480:	cf 91       	pop	r28
- 482:	1f 91       	pop	r17
- 484:	0f 91       	pop	r16
- 486:	08 95       	ret
+ 45c:	df 91       	pop	r29
+ 45e:	cf 91       	pop	r28
+ 460:	1f 91       	pop	r17
+ 462:	0f 91       	pop	r16
+ 464:	08 95       	ret
 
-00000488 <portraitChars>:
+00000466 <clearScreen>:
 
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+ 466:	ef 92       	push	r14
+ 468:	ff 92       	push	r15
+ 46a:	0f 93       	push	r16
+ 46c:	1f 93       	push	r17
+ 46e:	cf 93       	push	r28
+ 470:	df 93       	push	r29
+	for (row = 0; row<16;row++)
+	{
+		for (col = 0;col<16;col++)
+		{
+			setAddrWindow(row*8,col*8,8*(row+1),8*(col+1));
+			writeCMD(RAMWR);
+ 472:	00 e0       	ldi	r16, 0x00	; 0
+	for (;*text;text++) // for all non-nul chars
+	writeChar(*text,color); // write the char
+}
+
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+ 474:	e1 2c       	mov	r14, r1
+ 476:	1c c0       	rjmp	.+56     	; 0x4b0 <clearScreen+0x4a>
+ 478:	18 e0       	ldi	r17, 0x08	; 8
+ 47a:	16 0f       	add	r17, r22
+	uint8_t row,col, x,y;
+	for (row = 0; row<16;row++)
+	{
+		for (col = 0;col<16;col++)
+		{
+			setAddrWindow(row*8,col*8,8*(row+1),8*(col+1));
+ 47c:	21 2f       	mov	r18, r17
+ 47e:	4f 2d       	mov	r20, r15
+ 480:	80 2f       	mov	r24, r16
+ 482:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <setAddrWindow>
+			writeCMD(RAMWR);
+ 486:	8c e2       	ldi	r24, 0x2C	; 44
+ 488:	0e 94 55 01 	call	0x2aa	; 0x2aa <writeCMD>
+ 48c:	d8 e0       	ldi	r29, 0x08	; 8
+ 48e:	08 c0       	rjmp	.+16     	; 0x4a0 <clearScreen+0x3a>
+			for (x=0;x<8;x++)
+			{
+				for (y=0;y<9;y++)
+				{
+					pixel = 0x0000;
+					writeData16bit(pixel);
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	90 e0       	ldi	r25, 0x00	; 0
+ 494:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <writeData16bit>
+ 498:	c1 50       	subi	r28, 0x01	; 1
+			setAddrWindow(row*8,col*8,8*(row+1),8*(col+1));
+			writeCMD(RAMWR);
+			
+			for (x=0;x<8;x++)
+			{
+				for (y=0;y<9;y++)
+ 49a:	d1 f7       	brne	.-12     	; 0x490 <clearScreen+0x2a>
+ 49c:	d1 50       	subi	r29, 0x01	; 1
+		for (col = 0;col<16;col++)
+		{
+			setAddrWindow(row*8,col*8,8*(row+1),8*(col+1));
+			writeCMD(RAMWR);
+			
+			for (x=0;x<8;x++)
+ 49e:	11 f0       	breq	.+4      	; 0x4a4 <clearScreen+0x3e>
+	for (;*text;text++) // for all non-nul chars
+	writeChar(*text,color); // write the char
+}
+
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+ 4a0:	c9 e0       	ldi	r28, 0x09	; 9
+ 4a2:	f6 cf       	rjmp	.-20     	; 0x490 <clearScreen+0x2a>
+ 4a4:	61 2f       	mov	r22, r17
+	uint16_t pixel;
+	uint8_t row,col, x,y;
+	for (row = 0; row<16;row++)
+	{
+		for (col = 0;col<16;col++)
+ 4a6:	10 38       	cpi	r17, 0x80	; 128
+ 4a8:	39 f7       	brne	.-50     	; 0x478 <clearScreen+0x12>
+ 4aa:	0f 2d       	mov	r16, r15
+
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+	uint16_t pixel;
+	uint8_t row,col, x,y;
+	for (row = 0; row<16;row++)
+ 4ac:	00 38       	cpi	r16, 0x80	; 128
+ 4ae:	31 f0       	breq	.+12     	; 0x4bc <clearScreen+0x56>
+ 4b0:	68 94       	set
+ 4b2:	ff 24       	eor	r15, r15
+ 4b4:	f3 f8       	bld	r15, 3
+ 4b6:	f0 0e       	add	r15, r16
+	for (;*text;text++) // for all non-nul chars
+	writeChar(*text,color); // write the char
+}
+
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+ 4b8:	6e 2d       	mov	r22, r14
+ 4ba:	de cf       	rjmp	.-68     	; 0x478 <clearScreen+0x12>
+					writeData16bit(pixel);
+				}
+			}
+		}
+	}
+}
+ 4bc:	df 91       	pop	r29
+ 4be:	cf 91       	pop	r28
+ 4c0:	1f 91       	pop	r17
+ 4c2:	0f 91       	pop	r16
+ 4c4:	ff 90       	pop	r15
+ 4c6:	ef 90       	pop	r14
+ 4c8:	08 95       	ret
+
+000004ca <portraitChars>:
 
 void portraitChars()
 // Writes 378 characters (5x7) to screen in portrait mode
 {
- 488:	ef 92       	push	r14
- 48a:	ff 92       	push	r15
- 48c:	0f 93       	push	r16
- 48e:	1f 93       	push	r17
- 490:	cf 93       	push	r28
- 492:	df 93       	push	r29
+ 4ca:	0f 93       	push	r16
+ 4cc:	1f 93       	push	r17
+ 4ce:	cf 93       	push	r28
+ 4d0:	df 93       	push	r29
 	clearScreen();
- 494:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
-	for (int i=378;i>0;i--)
- 498:	ca e7       	ldi	r28, 0x7A	; 122
- 49a:	d1 e0       	ldi	r29, 0x01	; 1
+ 4d2:	0e 94 33 02 	call	0x466	; 0x466 <clearScreen>
+	for (unsigned int i=378;i>0;i--)
+ 4d6:	ca e7       	ldi	r28, 0x7A	; 122
+ 4d8:	d1 e0       	ldi	r29, 0x01	; 1
 	{
 		uint8_t x= i % 21;
 		uint8_t y= i / 21;
 		char ascii = (i % 96)+32;
 		putCh(ascii,x*6,y*8,BLUE);
- 49c:	0f 2e       	mov	r0, r31
- 49e:	f5 e1       	ldi	r31, 0x15	; 21
- 4a0:	ef 2e       	mov	r14, r31
- 4a2:	f1 2c       	mov	r15, r1
- 4a4:	f0 2d       	mov	r31, r0
- 4a6:	00 e6       	ldi	r16, 0x60	; 96
- 4a8:	10 e0       	ldi	r17, 0x00	; 0
- 4aa:	ce 01       	movw	r24, r28
- 4ac:	b7 01       	movw	r22, r14
- 4ae:	0e 94 98 02 	call	0x530	; 0x530 <__divmodhi4>
- 4b2:	46 2f       	mov	r20, r22
- 4b4:	44 0f       	add	r20, r20
- 4b6:	44 0f       	add	r20, r20
- 4b8:	44 0f       	add	r20, r20
- 4ba:	e8 2f       	mov	r30, r24
- 4bc:	ee 0f       	add	r30, r30
- 4be:	8e 0f       	add	r24, r30
- 4c0:	e8 2f       	mov	r30, r24
- 4c2:	ee 0f       	add	r30, r30
- 4c4:	ce 01       	movw	r24, r28
- 4c6:	b8 01       	movw	r22, r16
- 4c8:	0e 94 98 02 	call	0x530	; 0x530 <__divmodhi4>
- 4cc:	2f e1       	ldi	r18, 0x1F	; 31
- 4ce:	30 e0       	ldi	r19, 0x00	; 0
- 4d0:	6e 2f       	mov	r22, r30
- 4d2:	80 5e       	subi	r24, 0xE0	; 224
- 4d4:	0e 94 b6 01 	call	0x36c	; 0x36c <putCh>
+ 4da:	05 e1       	ldi	r16, 0x15	; 21
+ 4dc:	10 e6       	ldi	r17, 0x60	; 96
+ 4de:	9e 01       	movw	r18, r28
+ 4e0:	a9 e1       	ldi	r26, 0x19	; 25
+ 4e2:	b6 e8       	ldi	r27, 0x86	; 134
+ 4e4:	0e 94 e4 02 	call	0x5c8	; 0x5c8 <__umulhisi3>
+ 4e8:	28 1b       	sub	r18, r24
+ 4ea:	39 0b       	sbc	r19, r25
+ 4ec:	36 95       	lsr	r19
+ 4ee:	27 95       	ror	r18
+ 4f0:	82 0f       	add	r24, r18
+ 4f2:	93 1f       	adc	r25, r19
+ 4f4:	92 95       	swap	r25
+ 4f6:	82 95       	swap	r24
+ 4f8:	8f 70       	andi	r24, 0x0F	; 15
+ 4fa:	89 27       	eor	r24, r25
+ 4fc:	9f 70       	andi	r25, 0x0F	; 15
+ 4fe:	89 27       	eor	r24, r25
+ 500:	48 2f       	mov	r20, r24
+ 502:	44 0f       	add	r20, r20
+ 504:	44 0f       	add	r20, r20
+ 506:	44 0f       	add	r20, r20
+ 508:	08 9f       	mul	r16, r24
+ 50a:	90 01       	movw	r18, r0
+ 50c:	09 9f       	mul	r16, r25
+ 50e:	30 0d       	add	r19, r0
+ 510:	11 24       	eor	r1, r1
+ 512:	ce 01       	movw	r24, r28
+ 514:	82 1b       	sub	r24, r18
+ 516:	93 0b       	sbc	r25, r19
+ 518:	58 2f       	mov	r21, r24
+ 51a:	55 0f       	add	r21, r21
+ 51c:	85 0f       	add	r24, r21
+ 51e:	58 2f       	mov	r21, r24
+ 520:	55 0f       	add	r21, r21
+ 522:	9e 01       	movw	r18, r28
+ 524:	ab ea       	ldi	r26, 0xAB	; 171
+ 526:	ba ea       	ldi	r27, 0xAA	; 170
+ 528:	0e 94 e4 02 	call	0x5c8	; 0x5c8 <__umulhisi3>
+ 52c:	00 24       	eor	r0, r0
+ 52e:	88 0f       	add	r24, r24
+ 530:	99 1f       	adc	r25, r25
+ 532:	00 1c       	adc	r0, r0
+ 534:	88 0f       	add	r24, r24
+ 536:	99 1f       	adc	r25, r25
+ 538:	00 1c       	adc	r0, r0
+ 53a:	89 2f       	mov	r24, r25
+ 53c:	90 2d       	mov	r25, r0
+ 53e:	18 9f       	mul	r17, r24
+ 540:	90 01       	movw	r18, r0
+ 542:	19 9f       	mul	r17, r25
+ 544:	30 0d       	add	r19, r0
+ 546:	11 24       	eor	r1, r1
+ 548:	ce 01       	movw	r24, r28
+ 54a:	82 1b       	sub	r24, r18
+ 54c:	93 0b       	sbc	r25, r19
+ 54e:	2f e1       	ldi	r18, 0x1F	; 31
+ 550:	30 e0       	ldi	r19, 0x00	; 0
+ 552:	65 2f       	mov	r22, r21
+ 554:	80 5e       	subi	r24, 0xE0	; 224
+ 556:	0e 94 a5 01 	call	0x34a	; 0x34a <putCh>
 
 void portraitChars()
 // Writes 378 characters (5x7) to screen in portrait mode
 {
 	clearScreen();
-	for (int i=378;i>0;i--)
- 4d8:	21 97       	sbiw	r28, 0x01	; 1
- 4da:	39 f7       	brne	.-50     	; 0x4aa <portraitChars+0x22>
+	for (unsigned int i=378;i>0;i--)
+ 55a:	21 97       	sbiw	r28, 0x01	; 1
+ 55c:	09 f0       	breq	.+2      	; 0x560 <portraitChars+0x96>
+ 55e:	bf cf       	rjmp	.-130    	; 0x4de <portraitChars+0x14>
 		uint8_t x= i % 21;
 		uint8_t y= i / 21;
 		char ascii = (i % 96)+32;
 		putCh(ascii,x*6,y*8,BLUE);
 	}
 	delayT1();
- 4dc:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+ 560:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
 }
- 4e0:	df 91       	pop	r29
- 4e2:	cf 91       	pop	r28
- 4e4:	1f 91       	pop	r17
- 4e6:	0f 91       	pop	r16
- 4e8:	ff 90       	pop	r15
- 4ea:	ef 90       	pop	r14
- 4ec:	08 95       	ret
+ 564:	df 91       	pop	r29
+ 566:	cf 91       	pop	r28
+ 568:	1f 91       	pop	r17
+ 56a:	0f 91       	pop	r16
+ 56c:	08 95       	ret
 
-000004ee <main>:
+0000056e <main>:
 
-//-------------------------------------------------------------------------------------------
+
 int main ()
 {
 	
 	DDRD |=(1<<LED)|(1<<DC); 
- 4ee:	81 b3       	in	r24, 0x11	; 17
- 4f0:	83 60       	ori	r24, 0x03	; 3
- 4f2:	81 bb       	out	0x11, r24	; 17
+ 56e:	81 b3       	in	r24, 0x11	; 17
+ 570:	83 60       	ori	r24, 0x03	; 3
+ 572:	81 bb       	out	0x11, r24	; 17
 	DDRD|= (1<<RESET);
- 4f4:	8f 9a       	sbi	0x11, 7	; 17
+ 574:	8f 9a       	sbi	0x11, 7	; 17
 	PORTD |=(1<<RESET);
- 4f6:	97 9a       	sbi	0x12, 7	; 18
+ 576:	97 9a       	sbi	0x12, 7	; 18
+	
+	//--------------------------------------------------------------------------------------------------------------
+	DDRC&=~(1<<7); //port c pin8 is input
+ 578:	a7 98       	cbi	0x14, 7	; 20
+	PORTC |=(1<<7); //enable pullup at pin8
+ 57a:	af 9a       	sbi	0x15, 7	; 21
+
+	//--------------------------------------------------------------------------------------------------------------
 	
 	TFTSPI();
- 4f8:	0e 94 4c 01 	call	0x298	; 0x298 <TFTSPI>
+ 57c:	0e 94 4c 01 	call	0x298	; 0x298 <TFTSPI>
 	InitDisplay();
- 4fc:	0e 94 69 01 	call	0x2d2	; 0x2d2 <InitDisplay>
+ 580:	0e 94 69 01 	call	0x2d2	; 0x2d2 <InitDisplay>
 	clearScreen();
- 500:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
+ 584:	0e 94 33 02 	call	0x466	; 0x466 <clearScreen>
 	portraitChars();
- 504:	0e 94 44 02 	call	0x488	; 0x488 <portraitChars>
+ 588:	0e 94 65 02 	call	0x4ca	; 0x4ca <portraitChars>
 	delayT1();
- 508:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
+ 58c:	0e 94 39 01 	call	0x272	; 0x272 <delayT1>
 	clearScreen();
- 50c:	0e 94 a5 01 	call	0x34a	; 0x34a <clearScreen>
+ 590:	0e 94 33 02 	call	0x466	; 0x466 <clearScreen>
+	PORTD |= (1<<LED);
+ 594:	90 9a       	sbi	0x12, 0	; 18
+
+void gotoXY (uint8_t x,uint8_t y)
+// position cursor on character x,y grid, where 0<x<20, 0<y<19.
+{
+	curX = x;
+	curY = y;
+ 596:	c3 e0       	ldi	r28, 0x03	; 3
+	clearScreen();
+	PORTD |= (1<<LED);
+	
+	while(1)
+	{
+		if ((PINC & (1<<7))==0)
+ 598:	9f 99       	sbic	0x13, 7	; 19
+ 59a:	0b c0       	rjmp	.+22     	; 0x5b2 <main+0x44>
 
 
 void gotoXY (uint8_t x,uint8_t y)
 // position cursor on character x,y grid, where 0<x<20, 0<y<19.
 {
 	curX = x;
- 510:	84 e0       	ldi	r24, 0x04	; 4
- 512:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__data_end>
+ 59c:	10 92 72 00 	sts	0x0072, r1	; 0x800072 <__data_end>
 	curY = y;
- 516:	89 e0       	ldi	r24, 0x09	; 9
- 518:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <curY>
-	clearScreen();
-	
-	char *str = "Hello, World!"; // text to display
-	
-	gotoXY(4,9); // position text cursor
-	writeString(str,BLUE);
- 51c:	6f e1       	ldi	r22, 0x1F	; 31
- 51e:	70 e0       	ldi	r23, 0x00	; 0
- 520:	80 e6       	ldi	r24, 0x60	; 96
- 522:	90 e0       	ldi	r25, 0x00	; 0
- 524:	0e 94 2f 02 	call	0x45e	; 0x45e <writeString>
-	PORTD |= (1<<LED);
- 528:	90 9a       	sbi	0x12, 0	; 18
-	
-	
-	
-	
-}
- 52a:	80 e0       	ldi	r24, 0x00	; 0
- 52c:	90 e0       	ldi	r25, 0x00	; 0
- 52e:	08 95       	ret
+ 5a0:	c0 93 73 00 	sts	0x0073, r28	; 0x800073 <curY>
+		{
+			
+			char *str = "Key1 is pressed!"; // text to display
+			
+			gotoXY(0,3); // position text cursor
+			writeString(str,GREEN);
+ 5a4:	60 e0       	ldi	r22, 0x00	; 0
+ 5a6:	74 e0       	ldi	r23, 0x04	; 4
+ 5a8:	80 e6       	ldi	r24, 0x60	; 96
+ 5aa:	90 e0       	ldi	r25, 0x00	; 0
+ 5ac:	0e 94 1e 02 	call	0x43c	; 0x43c <writeString>
+ 5b0:	f3 cf       	rjmp	.-26     	; 0x598 <main+0x2a>
 
-00000530 <__divmodhi4>:
- 530:	97 fb       	bst	r25, 7
- 532:	07 2e       	mov	r0, r23
- 534:	16 f4       	brtc	.+4      	; 0x53a <__divmodhi4+0xa>
- 536:	00 94       	com	r0
- 538:	07 d0       	rcall	.+14     	; 0x548 <__divmodhi4_neg1>
- 53a:	77 fd       	sbrc	r23, 7
- 53c:	09 d0       	rcall	.+18     	; 0x550 <__divmodhi4_neg2>
- 53e:	0e 94 ac 02 	call	0x558	; 0x558 <__udivmodhi4>
- 542:	07 fc       	sbrc	r0, 7
- 544:	05 d0       	rcall	.+10     	; 0x550 <__divmodhi4_neg2>
- 546:	3e f4       	brtc	.+14     	; 0x556 <__divmodhi4_exit>
 
-00000548 <__divmodhi4_neg1>:
- 548:	90 95       	com	r25
- 54a:	81 95       	neg	r24
- 54c:	9f 4f       	sbci	r25, 0xFF	; 255
- 54e:	08 95       	ret
+void gotoXY (uint8_t x,uint8_t y)
+// position cursor on character x,y grid, where 0<x<20, 0<y<19.
+{
+	curX = x;
+ 5b2:	10 92 72 00 	sts	0x0072, r1	; 0x800072 <__data_end>
+	curY = y;
+ 5b6:	c0 93 73 00 	sts	0x0073, r28	; 0x800073 <curY>
+		{
+			
+			char *str = "Key1 is pressed!"; // text to display
+			
+			gotoXY(0,3); // position text cursor
+			writeString(str,BLUE);
+ 5ba:	6f e1       	ldi	r22, 0x1F	; 31
+ 5bc:	70 e0       	ldi	r23, 0x00	; 0
+ 5be:	80 e6       	ldi	r24, 0x60	; 96
+ 5c0:	90 e0       	ldi	r25, 0x00	; 0
+ 5c2:	0e 94 1e 02 	call	0x43c	; 0x43c <writeString>
+ 5c6:	e8 cf       	rjmp	.-48     	; 0x598 <main+0x2a>
 
-00000550 <__divmodhi4_neg2>:
- 550:	70 95       	com	r23
- 552:	61 95       	neg	r22
- 554:	7f 4f       	sbci	r23, 0xFF	; 255
+000005c8 <__umulhisi3>:
+ 5c8:	a2 9f       	mul	r26, r18
+ 5ca:	b0 01       	movw	r22, r0
+ 5cc:	b3 9f       	mul	r27, r19
+ 5ce:	c0 01       	movw	r24, r0
+ 5d0:	a3 9f       	mul	r26, r19
+ 5d2:	70 0d       	add	r23, r0
+ 5d4:	81 1d       	adc	r24, r1
+ 5d6:	11 24       	eor	r1, r1
+ 5d8:	91 1d       	adc	r25, r1
+ 5da:	b2 9f       	mul	r27, r18
+ 5dc:	70 0d       	add	r23, r0
+ 5de:	81 1d       	adc	r24, r1
+ 5e0:	11 24       	eor	r1, r1
+ 5e2:	91 1d       	adc	r25, r1
+ 5e4:	08 95       	ret
 
-00000556 <__divmodhi4_exit>:
- 556:	08 95       	ret
+000005e6 <_exit>:
+ 5e6:	f8 94       	cli
 
-00000558 <__udivmodhi4>:
- 558:	aa 1b       	sub	r26, r26
- 55a:	bb 1b       	sub	r27, r27
- 55c:	51 e1       	ldi	r21, 0x11	; 17
- 55e:	07 c0       	rjmp	.+14     	; 0x56e <__udivmodhi4_ep>
-
-00000560 <__udivmodhi4_loop>:
- 560:	aa 1f       	adc	r26, r26
- 562:	bb 1f       	adc	r27, r27
- 564:	a6 17       	cp	r26, r22
- 566:	b7 07       	cpc	r27, r23
- 568:	10 f0       	brcs	.+4      	; 0x56e <__udivmodhi4_ep>
- 56a:	a6 1b       	sub	r26, r22
- 56c:	b7 0b       	sbc	r27, r23
-
-0000056e <__udivmodhi4_ep>:
- 56e:	88 1f       	adc	r24, r24
- 570:	99 1f       	adc	r25, r25
- 572:	5a 95       	dec	r21
- 574:	a9 f7       	brne	.-22     	; 0x560 <__udivmodhi4_loop>
- 576:	80 95       	com	r24
- 578:	90 95       	com	r25
- 57a:	bc 01       	movw	r22, r24
- 57c:	cd 01       	movw	r24, r26
- 57e:	08 95       	ret
-
-00000580 <_exit>:
- 580:	f8 94       	cli
-
-00000582 <__stop_program>:
- 582:	ff cf       	rjmp	.-2      	; 0x582 <__stop_program>
+000005e8 <__stop_program>:
+ 5e8:	ff cf       	rjmp	.-2      	; 0x5e8 <__stop_program>

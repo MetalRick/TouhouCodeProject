@@ -232,17 +232,6 @@ void setAddrWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1)
 	writeData8bit(y1);
 }
 
-void clearScreen()
-{
-	setAddrWindow(0,0,xMax,yMax); // set window to entire display
-	writeCMD(RAMWR);
-	for (unsigned int i=40960;i>0;--i)
-	{
-		SPDR = 0;
-		while (!(SPSR & (1<<SPIF)));
-	}
-}
-//--------------------------------------------------------------------------------
 
 void putCh (char ch, uint8_t x, uint8_t y, uint16_t color)
 // write ch to display X,Y coordinates using ASCII 5x7 font
@@ -307,12 +296,34 @@ void writeString(char *text, uint16_t color)
 	writeChar(*text,color); // write the char
 }
 
+void clearScreen() // this function allows the entire display area have all black pixel
+{
+	uint16_t pixel;
+	uint8_t row,col, x,y;
+	for (row = 0; row<16;row++)
+	{
+		for (col = 0;col<16;col++)
+		{
+			setAddrWindow(row*8,col*8,8*(row+1),8*(col+1));
+			writeCMD(RAMWR);
+			
+			for (x=0;x<8;x++)
+			{
+				for (y=0;y<9;y++)
+				{
+					pixel = 0x0000;
+					writeData16bit(pixel);
+				}
+			}
+		}
+	}
+}
 
 void portraitChars()
 // Writes 378 characters (5x7) to screen in portrait mode
 {
 	clearScreen();
-	for (int i=378;i>0;i--)
+	for (unsigned int i=378;i>0;i--)
 	{
 		uint8_t x= i % 21;
 		uint8_t y= i / 21;
@@ -323,7 +334,6 @@ void portraitChars()
 }
 
 
-//-------------------------------------------------------------------------------------------
 int main ()
 {
 	
@@ -331,21 +341,45 @@ int main ()
 	DDRD|= (1<<RESET);
 	PORTD |=(1<<RESET);
 	
+	//--------------------------------------------------------------------------------------------------------------
+	DDRC&=~(1<<7); //port c pin8 is input
+	PORTC |=(1<<7); //enable pullup at pin8
+	DDRA&= ~(1<<0);
+	
+	//--------------------------------------------------------------------------------------------------------------
+	
 	TFTSPI();
 	InitDisplay();
 	clearScreen();
 	portraitChars();
 	delayT1();
 	clearScreen();
-	
-	char *str = "Hello, World!"; // text to display
-	
-	gotoXY(4,9); // position text cursor
-	writeString(str,BLUE);
 	PORTD |= (1<<LED);
 	
-	
-	
+	while(1)
+	{
+		if ((PINC & (1<<7))==0)
+		{
+			
+			char *str = "Key1 is pressed!"; // text to display
+			
+			gotoXY(0,3); // position text cursor
+			writeString(str,GREEN);
+		}
+		
+		else if ()
+		{
+		}
+		else 
+		{
+			
+			char *str = "Key1 is pressed!"; // text to display
+			
+			gotoXY(0,3); // position text cursor
+			writeString(str,BLUE);
+		}	
+	}
+	return 0;
 	
 }
 	
