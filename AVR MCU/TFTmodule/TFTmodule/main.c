@@ -333,6 +333,68 @@ void portraitChars()
 	delayT1();
 }
 
+void drawGauge(uint8_t x, uint8_t y) //This function will draw a gauge on TFT to test the steering input
+{
+		uint8_t j;
+		uint16_t pixel;
+		setAddrWindow(x,y,xMax,y+1);
+		writeCMD(RAMWR);
+		
+		for (j=0;j<128;j++)
+		{
+			pixel = 0xFFFF;
+			writeData16bit(pixel);
+		}
+		setAddrWindow(x,y+6,xMax,y+6);
+		writeCMD(RAMWR);
+		for (j=0;j<128;j++)
+		{
+			pixel = 0xFFFF;
+			writeData16bit(pixel);
+		}
+		setAddrWindow(x,y,x,y+6);
+		writeCMD(RAMWR);
+		for (j=0;j<6;j++)
+		{
+			pixel = 0xFFFF;
+			writeData16bit(pixel);
+		}
+		
+		setAddrWindow(xMax,y,xMax,y+6);
+		writeCMD(RAMWR);
+		for (j=0;j<6;j++)
+		{
+			pixel = 0xFFFF;
+			writeData16bit(pixel);
+		}
+	
+		
+		
+			
+}
+
+void drawGaugeContent(uint8_t x, uint8_t y,uint8_t z)
+{
+	uint8_t j,k;
+	uint16_t pixel;
+	setAddrWindow(x,y,z,y+6);
+	writeCMD(RAMWR);
+	for (k=0;k<4;k++)
+	{
+		for (j=0;j<z/4;j++)
+		{
+			
+			pixel = 0xFFFF;	
+			writeData16bit(pixel);
+		}
+		
+		
+	}
+	
+	
+	
+}
+
 
 int main ()
 {
@@ -341,12 +403,18 @@ int main ()
 	DDRD|= (1<<RESET);
 	PORTD |=(1<<RESET);
 	
-	//--------------------------------------------------------------------------------------------------------------
+	DDRC  |=(1<<0);
+	
+	
+	
 	DDRC&=~(1<<7); //port c pin8 is input
 	PORTC |=(1<<7); //enable pullup at pin8
-	DDRA&= ~(1<<0);
 	
-	//--------------------------------------------------------------------------------------------------------------
+	//ADC related settings
+	DDRA&= ~(1<<0);
+	ADCSRA = 0x87;
+	ADMUX = 0x60;
+	
 	
 	TFTSPI();
 	InitDisplay();
@@ -358,6 +426,15 @@ int main ()
 	
 	while(1)
 	{
+		ADCSRA |= (1<<ADSC);
+		while((ADCSRA &(1<<ADIF))==0);
+		
+		uint8_t highBit = ADCH;
+		//uint8_t lowBit = ADCL;
+		
+		//uint16_t value = (highBit<<8)|(lowBit&0xFF); 
+		//uint8_t division = value/8;
+		
 		if ((PINC & (1<<7))==0)
 		{
 			
@@ -367,16 +444,18 @@ int main ()
 			writeString(str,GREEN);
 		}
 		
-		else if ()
-		{
-		}
+		
 		else 
 		{
+			
 			
 			char *str = "Key1 is pressed!"; // text to display
 			
 			gotoXY(0,3); // position text cursor
 			writeString(str,BLUE);
+			drawGauge(0,6);
+			drawGaugeContent(0,6,highBit);
+			
 		}	
 	}
 	return 0;
